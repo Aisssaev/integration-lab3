@@ -1,0 +1,9 @@
+*
+!src/
+!requirements-api.txt
+!requirements-train.txt
+!artifacts/model.pt
+!artifacts/labels.json
+!artifacts/metrics.json
+**/__pycache__
+**/*.pyc

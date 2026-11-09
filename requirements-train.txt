@@ -1,0 +1,3 @@
+-r requirements-api.txt
+# лише для навчання / експорту
+onnx==1.17.0

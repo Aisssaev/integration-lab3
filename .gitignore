@@ -1,0 +1,14 @@
+.venv/
+.venv-dev/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+data
+data/
+artifacts/
+metrics/
+results/
+*.tar
+*.tar.gz

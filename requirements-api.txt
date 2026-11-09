@@ -1,0 +1,8 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.10.0
+numpy==1.26.4
+soundfile==0.12.1
+fastapi==0.162.2
+starlette==1.10.0
+uvicorn[standard]==0.32.1
+python-multipart==0.0.33
