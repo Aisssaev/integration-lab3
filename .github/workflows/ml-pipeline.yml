@@ -349,7 +349,8 @@ jobs:
           TAGS: ${{ steps.meta.outputs.tags }}
         run: |
           first_tag=$(echo "$TAGS" | head -n1)
-          repo_digest=$(docker image inspect --format '{{index .RepoDigests 0}}' "$first_tag")
+          repo_digest=$(docker image inspect --format '{{range .RepoDigests}}{{println .}}{{end}}' "$first_tag" \
+            | grep "^${first_tag%:*}@")
           docker image rm $TAGS "$IMAGE" > /dev/null
           docker pull -q "$repo_digest"
           pulled=$(docker image inspect --format '{{.Id}}' "$repo_digest")
