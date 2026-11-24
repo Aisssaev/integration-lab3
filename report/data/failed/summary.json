@@ -1,0 +1,22 @@
+{
+  "commit": "b87f2e2",
+  "event": "pull_request",
+  "run_url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45418432787",
+  "epochs": 2,
+  "min_accuracy": 85.0,
+  "accuracy": 92.81,
+  "per_class_accuracy": {
+    "yes": 97.61,
+    "no": 88.89,
+    "up": 94.82,
+    "down": 89.66
+  },
+  "model_size_kb": 392.0,
+  "train_time_s": 25.3,
+  "latency_ms": null,
+  "client_latency_ms": null,
+  "golden_samples": {
+    "passed": 7,
+    "total": 8
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "model_version": "1.0.0+b87f2e2",
+  "architecture": "KeywordCNN: 4×[Conv3×3-BN-ReLU-MaxPool] (16-32-64-128) + GAP + Dropout + FC",
+  "classes": [
+    "yes",
+    "no",
+    "up",
+    "down"
+  ],
+  "parameters": 97908,
+  "model_size_kb": 392.0,
+  "onnx_size_kb": 385.7,
+  "accuracy": 92.81,
+  "per_class_accuracy": {
+    "yes": 97.61,
+    "no": 88.89,
+    "up": 94.82,
+    "down": 89.66
+  },
+  "confusion_matrix": [
+    [
+      409,
+      5,
+      4,
+      1
+    ],
+    [
+      7,
+      360,
+      7,
+      31
+    ],
+    [
+      3,
+      8,
+      403,
+      11
+    ],
+    [
+      6,
+      24,
+      12,
+      364
+    ]
+  ],
+  "test_samples": 1655,
+  "best_val_accuracy": 93.79,
+  "latency_ms": {
+    "mean": 1.0104951799998219,
+    "p50": 1.0074479999957475,
+    "p95": 1.0472779999872728
+  },
+  "epochs": 2,
+  "seed": 42,
+  "split_sizes": {
+    "train": 12440,
+    "val": 1530,
+    "test": 1655
+  },
+  "train_time_s": 25.3,
+  "trained_at": "2026-11-24T14:52:27+00:00",
+  "torch_version": "2.10.0+cpu",
+  "git_commit": "b87f2e276d001d21ef8f0192e891fcea19a18c72"
+}

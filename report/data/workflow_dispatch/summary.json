@@ -1,0 +1,31 @@
+{
+  "commit": "9329155",
+  "event": "workflow_dispatch",
+  "run_url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45423649054",
+  "epochs": 5,
+  "min_accuracy": 95.0,
+  "accuracy": 96.56,
+  "per_class_accuracy": {
+    "yes": 98.57,
+    "no": 95.06,
+    "up": 97.65,
+    "down": 94.83
+  },
+  "model_size_kb": 392.0,
+  "train_time_s": 126.1,
+  "latency_ms": {
+    "mean": 1.52,
+    "p50": 1.377,
+    "p95": 2.408
+  },
+  "client_latency_ms": {
+    "mean": 3.091,
+    "p50": 2.802,
+    "p95": 4.841,
+    "max": 8.28
+  },
+  "golden_samples": {
+    "passed": 8,
+    "total": 8
+  }
+}

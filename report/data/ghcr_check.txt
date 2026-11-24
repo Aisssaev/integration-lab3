@@ -1,0 +1,13 @@
+$ docker pull ghcr.io/aisssaev/integration-lab3/kws-api:latest
+$ docker run -d -p 8000:8000 ghcr.io/aisssaev/integration-lab3/kws-api:latest
+$ curl -s http://localhost:8000/model-info
+{"model_version":"1.0.0+9329155","backend":"torch","classes":["yes","no","up","down"],
+ "parameters":97908,"model_size_kb":392.0,"accuracy":97.82,"epochs":10,"seed":42,
+ "git_commit":"932915555d15531059389c4c423c1506d4e26544"}
+$ curl -s -F "file=@samples/yes_1.wav" http://localhost:8000/predict
+{"label":"yes","confidence":0.9998,"model_version":"1.0.0+9329155", ...}
+$ docker inspect --format '{{json .Config.Labels}}' ...kws-api:latest
+org.opencontainers.image.version=1.0.0+9329155
+org.opencontainers.image.revision=932915555d15531059389c4c423c1506d4e26544
+$ docker history --no-trunc ... | grep -ciE "token|secret|password|ghp_|github_pat"
+0

@@ -1,0 +1,62 @@
+{
+  "passed": 7,
+  "total": 8,
+  "results": [
+    {
+      "file": "down_1.wav",
+      "expected": "down",
+      "predicted": "down",
+      "confidence": 0.9986,
+      "ok": true
+    },
+    {
+      "file": "down_2.wav",
+      "expected": "down",
+      "predicted": "down",
+      "confidence": 0.9973,
+      "ok": true
+    },
+    {
+      "file": "no_1.wav",
+      "expected": "no",
+      "predicted": "no",
+      "confidence": 0.9658,
+      "ok": true
+    },
+    {
+      "file": "no_2.wav",
+      "expected": "no",
+      "predicted": "no",
+      "confidence": 0.9621,
+      "ok": true
+    },
+    {
+      "file": "up_1.wav",
+      "expected": "up",
+      "predicted": "up",
+      "confidence": 0.9961,
+      "ok": true
+    },
+    {
+      "file": "up_2.wav",
+      "expected": "up",
+      "predicted": "up",
+      "confidence": 0.9961,
+      "ok": true
+    },
+    {
+      "file": "yes_1.wav",
+      "expected": "no",
+      "predicted": "yes",
+      "confidence": 0.9994,
+      "ok": false
+    },
+    {
+      "file": "yes_2.wav",
+      "expected": "yes",
+      "predicted": "yes",
+      "confidence": 0.9996,
+      "ok": true
+    }
+  ]
+}
