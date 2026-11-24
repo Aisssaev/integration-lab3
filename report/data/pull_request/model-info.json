@@ -1,0 +1,1 @@
+{"model_version":"1.0.0+95bd2cc","backend":"torch","architecture":"KeywordCNN: 4×[Conv3×3-BN-ReLU-MaxPool] (16-32-64-128) + GAP + Dropout + FC","classes":["yes","no","up","down"],"parameters":97908,"model_size_kb":392.0,"accuracy":92.93,"trained_at":"2026-11-24T15:05:58+00:00","epochs":2,"seed":42,"git_commit":"95bd2cc49e2579d91e57f7219d1c2d3487b480e1"}

@@ -1,0 +1,16 @@
+{
+  "requests": 100,
+  "warmup": 10,
+  "server_latency_ms": {
+    "mean": 1.52,
+    "p50": 1.377,
+    "p95": 2.408,
+    "max": 5.732
+  },
+  "client_latency_ms": {
+    "mean": 3.091,
+    "p50": 2.802,
+    "p95": 4.841,
+    "max": 8.28
+  }
+}

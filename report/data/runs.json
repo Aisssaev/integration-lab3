@@ -1,0 +1,783 @@
+{
+  "pull_request_cold": {
+    "id": 45418387005,
+    "url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45418387005",
+    "event": "pull_request",
+    "branch": "docs/lab3-report",
+    "sha": "78bb05a",
+    "conclusion": "success",
+    "duration_s": 610.0,
+    "jobs": {
+      "gitleaks": {
+        "conclusion": "success",
+        "duration_s": 13.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 4.0,
+          "Scan git history for secrets": 3.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "lint": {
+        "conclusion": "success",
+        "duration_s": 15.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 3.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run pip install ruff==0.8.4 && ruff check src/ scripts/ tests/": 6.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "train": {
+        "conclusion": "success",
+        "duration_s": 311.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Validate inputs": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Restore dataset cache": 1.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 5.0,
+          "Build trainer image": 166.0,
+          "Train in container": 121.0,
+          "Training summary": 0.0,
+          "Upload model": 2.0,
+          "Post Build trainer image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 3.0,
+          "Post Restore dataset cache": 5.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "verify": {
+        "conclusion": "success",
+        "duration_s": 200.0,
+        "steps": {
+          "Set up job": 4.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 3.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 8.0,
+          "Read model version": 0.0,
+          "Build runtime image": 148.0,
+          "Start service": 2.0,
+          "Golden-sample check": 3.0,
+          "Quality gate (accuracy)": 0.0,
+          "Latency benchmark": 0.0,
+          "Report": 1.0,
+          "Upload report": 2.0,
+          "Save verified image": 9.0,
+          "Upload verified image": 8.0,
+          "Post Build runtime image": 3.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 3.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "trivy-scan": {
+        "conclusion": "success",
+        "duration_s": 48.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 7.0,
+          "Scan image (fail on CRITICAL)": 27.0,
+          "Upload trivy report": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (1)": {
+        "conclusion": "success",
+        "duration_s": 42.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 3.0,
+          "Load and start verified image": 16.0,
+          "Run pytest": 11.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 2.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (2)": {
+        "conclusion": "success",
+        "duration_s": 71.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 36.0,
+          "Load and start verified image": 15.0,
+          "Run pytest": 11.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 2.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "build-push": {
+        "conclusion": "skipped",
+        "duration_s": null,
+        "steps": {}
+      }
+    }
+  },
+  "push_cold": {
+    "id": 45418326374,
+    "url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45418326374",
+    "event": "push",
+    "branch": "main",
+    "sha": "f226a41",
+    "conclusion": "failure",
+    "duration_s": 799.0,
+    "jobs": {
+      "gitleaks": {
+        "conclusion": "success",
+        "duration_s": 8.0,
+        "steps": {
+          "Set up job": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Scan git history for secrets": 4.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "lint": {
+        "conclusion": "success",
+        "duration_s": 6.0,
+        "steps": {
+          "Set up job": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run pip install ruff==0.8.4 && ruff check src/ scripts/ tests/": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "train": {
+        "conclusion": "success",
+        "duration_s": 522.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Validate inputs": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Restore dataset cache": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 10.0,
+          "Build trainer image": 126.0,
+          "Train in container": 344.0,
+          "Training summary": 0.0,
+          "Upload model": 2.0,
+          "Post Build trainer image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 3.0,
+          "Post Restore dataset cache": 29.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "verify": {
+        "conclusion": "success",
+        "duration_s": 153.0,
+        "steps": {
+          "Set up job": 3.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 7.0,
+          "Read model version": 1.0,
+          "Build runtime image": 110.0,
+          "Start service": 2.0,
+          "Golden-sample check": 2.0,
+          "Quality gate (accuracy)": 0.0,
+          "Latency benchmark": 0.0,
+          "Report": 0.0,
+          "Upload report": 2.0,
+          "Save verified image": 8.0,
+          "Upload verified image": 4.0,
+          "Post Build runtime image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 6.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (1)": {
+        "conclusion": "success",
+        "duration_s": 58.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 18.0,
+          "Load and start verified image": 17.0,
+          "Run pytest": 11.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 2.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 3.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "trivy-scan": {
+        "conclusion": "success",
+        "duration_s": 44.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 18.0,
+          "Scan image (fail on CRITICAL)": 20.0,
+          "Upload trivy report": 2.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (2)": {
+        "conclusion": "success",
+        "duration_s": 72.0,
+        "steps": {
+          "Set up job": 4.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 3.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 5.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 31.0,
+          "Load and start verified image": 13.0,
+          "Run pytest": 10.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 2.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "build-push": {
+        "conclusion": "failure",
+        "duration_s": 33.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 3.0,
+          "Load verified image": 10.0,
+          "Run docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550": 1.0,
+          "Run docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302": 0.0,
+          "Tag and push verified image": 12.0,
+          "Prove pushed image is the verified one": 3.0,
+          "Post Run docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550": 0.0,
+          "Complete job": 0.0
+        }
+      }
+    }
+  },
+  "failed": {
+    "id": 45418432787,
+    "url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45418432787",
+    "event": "pull_request",
+    "branch": "test/broken-expected",
+    "sha": "fc81aa5",
+    "conclusion": "failure",
+    "duration_s": 324.0,
+    "jobs": {
+      "lint": {
+        "conclusion": "success",
+        "duration_s": 5.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run pip install ruff==0.8.4 && ruff check src/ scripts/ tests/": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "gitleaks": {
+        "conclusion": "success",
+        "duration_s": 14.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 4.0,
+          "Scan git history for secrets": 5.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "train": {
+        "conclusion": "success",
+        "duration_s": 170.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Validate inputs": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Restore dataset cache": 1.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 6.0,
+          "Build trainer image": 77.0,
+          "Train in container": 73.0,
+          "Training summary": 0.0,
+          "Upload model": 1.0,
+          "Post Build trainer image": 1.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 5.0,
+          "Post Restore dataset cache": 3.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "verify": {
+        "conclusion": "failure",
+        "duration_s": 141.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 2.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 6.0,
+          "Read model version": 0.0,
+          "Build runtime image": 113.0,
+          "Start service": 5.0,
+          "Golden-sample check": 1.0,
+          "Quality gate (accuracy)": 0.0,
+          "Latency benchmark": 0.0,
+          "Report": 0.0,
+          "Upload report": 2.0,
+          "Save verified image": 0.0,
+          "Upload verified image": 0.0,
+          "Post Build runtime image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 3.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests": {
+        "conclusion": "skipped",
+        "duration_s": null,
+        "steps": {}
+      },
+      "trivy-scan": {
+        "conclusion": "skipped",
+        "duration_s": null,
+        "steps": {}
+      },
+      "build-push": {
+        "conclusion": "skipped",
+        "duration_s": null,
+        "steps": {}
+      }
+    }
+  },
+  "pull_request": {
+    "id": 45421106876,
+    "url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45421106876",
+    "event": "pull_request",
+    "branch": "fix/ghcr-repo-digest",
+    "sha": "bace956",
+    "conclusion": "success",
+    "duration_s": 256.0,
+    "jobs": {
+      "gitleaks": {
+        "conclusion": "success",
+        "duration_s": 13.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Scan git history for secrets": 9.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "lint": {
+        "conclusion": "success",
+        "duration_s": 9.0,
+        "steps": {
+          "Set up job": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run pip install ruff==0.8.4 && ruff check src/ scripts/ tests/": 4.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 1.0
+        }
+      },
+      "train": {
+        "conclusion": "success",
+        "duration_s": 123.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Validate inputs": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Restore dataset cache": 5.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 7.0,
+          "Build trainer image": 30.0,
+          "Train in container": 70.0,
+          "Training summary": 0.0,
+          "Upload model": 2.0,
+          "Post Build trainer image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 0.0,
+          "Post Restore dataset cache": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "verify": {
+        "conclusion": "success",
+        "duration_s": 67.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 5.0,
+          "Read model version": 0.0,
+          "Build runtime image": 32.0,
+          "Start service": 4.0,
+          "Golden-sample check": 2.0,
+          "Quality gate (accuracy)": 0.0,
+          "Latency benchmark": 1.0,
+          "Report": 0.0,
+          "Upload report": 1.0,
+          "Save verified image": 9.0,
+          "Upload verified image": 3.0,
+          "Post Build runtime image": 1.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 3.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (1)": {
+        "conclusion": "success",
+        "duration_s": 47.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 3.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 13.0,
+          "Load and start verified image": 14.0,
+          "Run pytest": 9.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 1.0
+        }
+      },
+      "trivy-scan": {
+        "conclusion": "success",
+        "duration_s": 34.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 10.0,
+          "Scan image (fail on CRITICAL)": 19.0,
+          "Upload trivy report": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (2)": {
+        "conclusion": "success",
+        "duration_s": 43.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 2.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 8.0,
+          "Load and start verified image": 15.0,
+          "Run pytest": 10.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "build-push": {
+        "conclusion": "skipped",
+        "duration_s": null,
+        "steps": {}
+      }
+    }
+  },
+  "push": {
+    "id": 45422057111,
+    "url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45422057111",
+    "event": "push",
+    "branch": "main",
+    "sha": "9329155",
+    "conclusion": "success",
+    "duration_s": 459.0,
+    "jobs": {
+      "lint": {
+        "conclusion": "success",
+        "duration_s": 7.0,
+        "steps": {
+          "Set up job": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run pip install ruff==0.8.4 && ruff check src/ scripts/ tests/": 3.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "gitleaks": {
+        "conclusion": "success",
+        "duration_s": 8.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Scan git history for secrets": 2.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "train": {
+        "conclusion": "success",
+        "duration_s": 256.0,
+        "steps": {
+          "Set up job": 3.0,
+          "Validate inputs": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 3.0,
+          "Restore dataset cache": 12.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 11.0,
+          "Build trainer image": 36.0,
+          "Train in container": 182.0,
+          "Training summary": 0.0,
+          "Upload model": 2.0,
+          "Post Build trainer image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 0.0,
+          "Post Restore dataset cache": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "verify": {
+        "conclusion": "success",
+        "duration_s": 98.0,
+        "steps": {
+          "Set up job": 3.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 2.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 7.0,
+          "Read model version": 0.0,
+          "Build runtime image": 50.0,
+          "Start service": 8.0,
+          "Golden-sample check": 2.0,
+          "Quality gate (accuracy)": 0.0,
+          "Latency benchmark": 0.0,
+          "Report": 0.0,
+          "Upload report": 1.0,
+          "Save verified image": 8.0,
+          "Upload verified image": 5.0,
+          "Post Build runtime image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 5.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (1)": {
+        "conclusion": "success",
+        "duration_s": 39.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 7.0,
+          "Load and start verified image": 18.0,
+          "Run pytest": 7.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (2)": {
+        "conclusion": "success",
+        "duration_s": 36.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 2.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 4.0,
+          "Load and start verified image": 16.0,
+          "Run pytest": 9.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "trivy-scan": {
+        "conclusion": "success",
+        "duration_s": 35.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 7.0,
+          "Scan image (fail on CRITICAL)": 22.0,
+          "Upload trivy report": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "build-push": {
+        "conclusion": "success",
+        "duration_s": 44.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 6.0,
+          "Load verified image": 9.0,
+          "Run docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550": 1.0,
+          "Run docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302": 1.0,
+          "Tag and push verified image": 4.0,
+          "Prove pushed image is the verified one": 18.0,
+          "Post Run docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550": 0.0,
+          "Complete job": 1.0
+        }
+      }
+    }
+  },
+  "workflow_dispatch": {
+    "id": 45423649054,
+    "url": "https://github.com/Aisssaev/integration-lab3/actions/runs/45423649054",
+    "event": "workflow_dispatch",
+    "branch": "main",
+    "sha": "9329155",
+    "conclusion": "success",
+    "duration_s": 435.0,
+    "jobs": {
+      "lint": {
+        "conclusion": "success",
+        "duration_s": 8.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run pip install ruff==0.8.4 && ruff check src/ scripts/ tests/": 2.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "gitleaks": {
+        "conclusion": "success",
+        "duration_s": 8.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Scan git history for secrets": 3.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "train": {
+        "conclusion": "success",
+        "duration_s": 204.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Validate inputs": 0.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Restore dataset cache": 6.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 6.0,
+          "Build trainer image": 37.0,
+          "Train in container": 144.0,
+          "Training summary": 0.0,
+          "Upload model": 2.0,
+          "Post Build trainer image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 1.0,
+          "Post Restore dataset cache": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "verify": {
+        "conclusion": "success",
+        "duration_s": 89.0,
+        "steps": {
+          "Set up job": 3.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 2.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 7.0,
+          "Read model version": 0.0,
+          "Build runtime image": 41.0,
+          "Start service": 9.0,
+          "Golden-sample check": 3.0,
+          "Quality gate (accuracy)": 0.0,
+          "Latency benchmark": 0.0,
+          "Report": 0.0,
+          "Upload report": 1.0,
+          "Save verified image": 7.0,
+          "Upload verified image": 4.0,
+          "Post Build runtime image": 2.0,
+          "Post Run docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069": 6.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "trivy-scan": {
+        "conclusion": "success",
+        "duration_s": 35.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 9.0,
+          "Scan image (fail on CRITICAL)": 21.0,
+          "Upload trivy report": 1.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (2)": {
+        "conclusion": "success",
+        "duration_s": 62.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 4.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 6.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 22.0,
+          "Load and start verified image": 14.0,
+          "Run pytest": 8.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 1.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 1.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "integration-tests (1)": {
+        "conclusion": "success",
+        "duration_s": 55.0,
+        "steps": {
+          "Set up job": 1.0,
+          "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 2.0,
+          "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 4.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 17.0,
+          "Load and start verified image": 15.0,
+          "Run pytest": 10.0,
+          "Test summary": 0.0,
+          "Upload JUnit report": 2.0,
+          "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0": 0.0,
+          "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1": 0.0,
+          "Complete job": 0.0
+        }
+      },
+      "build-push": {
+        "conclusion": "success",
+        "duration_s": 52.0,
+        "steps": {
+          "Set up job": 2.0,
+          "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333": 13.0,
+          "Load verified image": 10.0,
+          "Run docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550": 0.0,
+          "Run docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302": 1.0,
+          "Tag and push verified image": 5.0,
+          "Prove pushed image is the verified one": 19.0,
+          "Post Run docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550": 0.0,
+          "Complete job": 0.0
+        }
+      }
+    }
+  }
+}
