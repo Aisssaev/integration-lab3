@@ -13,6 +13,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
 
+plt.rcParams["font.family"] = "Times New Roman"
+
 ROOT = Path(sys.argv[1]).resolve()
 REPORT = ROOT / "report"
 DATA, FIGS, SHOTS = REPORT / "data", REPORT / "figs", REPORT / "shots"
@@ -91,6 +93,41 @@ figure_canvas.tight_layout()
 figure_canvas.savefig(FIGS / "job_durations.png", dpi=200)
 plt.close(figure_canvas)
 
+figure_canvas, axes = plt.subplots(figsize=(11, 5))
+axes.set_xlim(0, 11)
+axes.set_ylim(0.3, 5.5)
+axes.axis("off")
+for x, y, text in ((1.9, 5.0, "pull_request / push / workflow_dispatch"), (1.0, 3.0, "lint"), (5.3, 5.0, "gitleaks"),
+                   (2.7, 3.0, "train"), (4.4, 3.0, "verify"), (6.6, 3.8, "integration-tests\n(matrix 1 / 2)"),
+                   (6.6, 2.2, "trivy-scan"), (8.8, 3.0, "build-push"), (10.4, 3.0, "GHCR")):
+    axes.text(x, y, text, ha="center", va="center", fontsize=12,
+              bbox={"boxstyle": "round,pad=0.4", "facecolor": "#e8f0fb", "edgecolor": "#2f5d9a"})
+
+
+def arrow(start, end, connection="arc3", color="#333333", style="-"):
+    axes.annotate("", xy=end, xytext=start, arrowprops={"arrowstyle": "->", "color": color, "lw": 1.3,
+                                                        "linestyle": style, "connectionstyle": connection})
+
+
+arrow((1.0, 4.7), (1.0, 3.3))
+arrow((3.7, 5.0), (4.75, 5.0))
+arrow((1.35, 3.0), (2.3, 3.0))
+arrow((3.05, 3.0), (3.95, 3.0))
+arrow((4.85, 3.15), (5.75, 3.7))
+arrow((4.85, 2.85), (5.95, 2.3))
+arrow((7.45, 3.7), (8.2, 3.2))
+arrow((7.25, 2.3), (8.2, 2.85))
+arrow((5.85, 5.0), (8.8, 3.3), "angle,angleA=0,angleB=90")
+arrow((9.4, 3.0), (10.0, 3.0))
+for job_x, label_x, text in ((2.7, 2.3, "артефакт model:\nmodel.pt, labels.json,\nmetrics.json, train.log"),
+                             (4.4, 4.6, "артефакти report і image:\nverify.json, latency.json,\nreport.md, kws-api.tar.gz")):
+    arrow((job_x, 2.7), (label_x, 1.55), color="#888888", style="--")
+    axes.text(label_x, 1.05, text, ha="center", va="center", fontsize=10)
+axes.text(8.8, 2.25, "лише push у main або\nручний запуск з push_image", ha="center", va="center", fontsize=10, style="italic")
+figure_canvas.tight_layout()
+figure_canvas.savefig(FIGS / "pipeline.png", dpi=200)
+plt.close(figure_canvas)
+
 doc = Document()
 for section in doc.sections:
     section.left_margin, section.right_margin, section.top_margin, section.bottom_margin = Cm(3), Cm(1.5), Cm(2), Cm(2)
@@ -100,8 +137,12 @@ normal.element.rPr.rFonts.set(qn("w:eastAsia"), "Times New Roman")
 normal.paragraph_format.space_after = Pt(4)
 for name, size in (("Heading 1", 16), ("Heading 2", 14)):
     heading = doc.styles[name]
-    heading.font.name, heading.font.size, heading.font.color.rgb = "Times New Roman", Pt(size), None
-    heading.element.rPr.rFonts.set(qn("w:eastAsia"), "Times New Roman")
+    heading.font.size, heading.font.color.rgb = Pt(size), None
+for fonts in doc.styles.element.iter(qn("w:rFonts")):
+    for attribute in ("w:asciiTheme", "w:hAnsiTheme", "w:eastAsiaTheme", "w:cstheme"):
+        fonts.attrib.pop(qn(attribute), None)
+    for attribute in ("w:ascii", "w:hAnsi", "w:eastAsia", "w:cs"):
+        fonts.set(qn(attribute), "Times New Roman")
 
 counters = {"fig": 0, "tab": 0}
 
@@ -130,8 +171,7 @@ def bullet(text):
 def code(text, size=9):
     paragraph = doc.add_paragraph()
     run = paragraph.add_run(text.rstrip())
-    run.font.name, run.font.size = "Courier New", Pt(size)
-    run.element.rPr.rFonts.set(qn("w:eastAsia"), "Courier New")
+    run.font.size = Pt(size)
     paragraph.paragraph_format.left_indent = Cm(0.3)
     paragraph.paragraph_format.space_after = Pt(6)
 
@@ -187,23 +227,27 @@ def step_seconds(run_key, job, step):
     return f"{runs[run_key]['jobs'][job]['steps'][step]:.0f}"
 
 
-for line in ("МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ", "[Назва університету]", "[Назва кафедри]"):
+for line in ("МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ", "Львівський національний університет імені Івана Франка",
+             "Факультет електроніки та комп'ютерних технологій",
+             "Кафедра оптоелектроніки та інформаційних технологій"):
     para(line, align=WD_ALIGN_PARAGRAPH.CENTER)
-for _ in range(6):
+for _ in range(4):
     para()
 para("ЗВІТ", bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, size=18)
 para("з лабораторної роботи №3", align=WD_ALIGN_PARAGRAPH.CENTER)
 para("з дисципліни «Інтеграція інформаційних систем»", align=WD_ALIGN_PARAGRAPH.CENTER)
 para("на тему: «Автоматизація збірки та розгортання ML-сервісу: CI/CD-пайплайн у GitHub Actions "
      "(навчання в Docker, артефакти, перевірка моделі, публікація образу)»", align=WD_ALIGN_PARAGRAPH.CENTER)
-for _ in range(6):
+for _ in range(4):
     para()
-para("Виконав: студент групи [Група]", align=WD_ALIGN_PARAGRAPH.RIGHT)
-para("[Прізвище Ім'я По батькові]", align=WD_ALIGN_PARAGRAPH.RIGHT)
-para("Перевірив: [Посада, ПІБ викладача]", align=WD_ALIGN_PARAGRAPH.RIGHT)
-for _ in range(5):
+para("Виконав:", align=WD_ALIGN_PARAGRAPH.RIGHT)
+para("студент групи ФеІ-44", align=WD_ALIGN_PARAGRAPH.RIGHT)
+para("Зізинь Мирослав-Павло", align=WD_ALIGN_PARAGRAPH.RIGHT)
+para("Викладач:", align=WD_ALIGN_PARAGRAPH.RIGHT)
+para("Прокопів Р. О.", align=WD_ALIGN_PARAGRAPH.RIGHT)
+for _ in range(3):
     para()
-para("[Місто] – 2026", align=WD_ALIGN_PARAGRAPH.CENTER)
+para("Львів – 2026", align=WD_ALIGN_PARAGRAPH.CENTER)
 page_break()
 
 doc.add_heading("Мета роботи", 1)
@@ -241,31 +285,24 @@ table(["Параметр", "Значення"], [
 ], f"Модель, навчена пайплайном (push у main, запуск {runs['push']['id']})", [5, 11])
 
 doc.add_heading("2. Структура проєкту", 1)
-code("""integration-lab3/
-├── .github/
-│   ├── workflows/ml-pipeline.yml   # CI/CD-пайплайн
-│   └── dependabot.yml              # оновлення actions, базового образу, pip
-├── src/                            # код з ЛР №2 (data, model, train, api)
-├── scripts/
-│   ├── verify_model.py             # еталонні зразки → verify.json, exit 1 при помилці
-│   ├── benchmark.py                # latency mean / p50 / p95 → latency.json
-│   ├── make_report.py              # report.md (Job Summary) + summary.json
-│   └── ci_local.sh                 # ті самі кроки локально
-├── samples/*.wav, expected.json    # 8 зразків з тестового спліту та очікувані класи
-├── tests/                          # інтеграційні тести pytest
-├── report/                         # цей звіт, дані запусків і генератор
-├── Dockerfile                      # цілі trainer і runtime
-├── .dockerignore                   # білий список контексту збірки
-└── requirements-api.txt, requirements-train.txt, requirements-dev.txt""")
+table(["Шлях", "Призначення"], [
+    [".github/workflows/ml-pipeline.yml", "CI/CD-пайплайн"],
+    [".github/dependabot.yml", "оновлення actions, базового образу, pip"],
+    ["src/", "код з ЛР №2: data, model, train, evaluate, inference, api"],
+    ["scripts/verify_model.py", "еталонні зразки → verify.json, exit 1 при помилці"],
+    ["scripts/benchmark.py", "latency mean / p50 / p95 → latency.json"],
+    ["scripts/make_report.py", "report.md (Job Summary) + summary.json"],
+    ["scripts/ci_local.sh", "ті самі кроки локально"],
+    ["samples/*.wav, samples/expected.json", "8 зразків з тестового спліту та очікувані класи"],
+    ["tests/", "інтеграційні тести pytest"],
+    ["report/", "цей звіт, дані запусків і генератор"],
+    ["Dockerfile", "цілі trainer і runtime"],
+    [".dockerignore", "білий список контексту збірки"],
+    ["requirements-api.txt, requirements-train.txt, requirements-dev.txt", "залежності інференсу, навчання і тестів"],
+], "Структура репозиторію", [7.5, 8.5], size=11)
 
 doc.add_heading("3. Схема пайплайна", 1)
-code(""" pull_request / push / workflow_dispatch
-                  │
-   lint ──► train ──► verify ──┬──► integration-tests (matrix) ──┐
-   gitleaks ─────────────────  ├──► trivy-scan ──────────────────┼──► build-push ──► GHCR
-              │          │     │                                 │   (push у main або
-              ▼          ▼     ▼                                     ручний запуск з push_image)
-           model      report  image (tar, перевірений образ)""", 7)
+figure(FIGS / "pipeline.png", "Схема пайплайна: jobs, залежності та артефакти")
 table(["Job", "needs", "Що робить", "Артефакт / результат"], [
     ["lint", "—", "ruff check src/ scripts/ tests/", "—"],
     ["gitleaks", "—", "пошук секретів в усій історії git (fetch-depth: 0)", "—"],
